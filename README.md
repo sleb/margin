@@ -9,6 +9,7 @@ Status: planning. Nothing is built yet.
 - **Always available.** Starts at login; summon it from the menubar or a global hotkey.
 - **Keyboard first.** Vi mode for editing, shortcuts for everything, and a command palette.
 - **First-class markdown.** Obsidian-style live editing, link completion, and linting over a vault of plain markdown files.
+- **Fearless refactoring.** Rename or move a note and every link to it is updated, all or nothing, with a preview and an undo.
 
 ## Stack
 
