@@ -2,4 +2,4 @@
 name = "margin-vault"
 version = "0.1.0"
 description = "UI-agnostic core for margin: files, index, search, and lint"
-edition = "2021"
+edition = "2024"
