@@ -28,11 +28,11 @@ margin has three components and one boundary between them:
    markdown files on disk (the vault)
 ```
 
-| Component | Lives in | One-line role |
-|---|---|---|
+| Component  | Lives in              | One-line role                                      |
+| ---------- | --------------------- | -------------------------------------------------- |
 | Vault core | `crates/margin-vault` | Everything about notes: files, index, search, lint |
-| Shell | `src-tauri` | Everything about being a macOS app |
-| Frontend | `src` | Everything the user sees and types into |
+| Shell      | `src-tauri`           | Everything about being a macOS app                 |
+| Frontend   | `src`                 | Everything the user sees and types into            |
 
 Two rules shape the rest of the design:
 
@@ -45,15 +45,15 @@ A UI-agnostic Rust library. It could be driven by a CLI or by tests with no app 
 
 ### Parts
 
-| Part | Responsibility |
-|---|---|
-| **Store** | Reads and writes note files. Owns path handling and versions. |
-| **Watcher** | Notices file changes made outside margin and feeds them to the index. |
-| **Index** | In-memory metadata for every note: title, headings, tags, outgoing links, and the reverse link graph (backlinks). For each link it records where the destination sits in the source text and which version of the note that position was read from. Resolves link text to a note. |
-| **Search** | Fuzzy match over titles and paths for the switcher; full-text search over note bodies. |
-| **Completion** | Given a partial link, returns candidate notes and headings from the index. |
-| **Lint** | Given a note's text and the index, returns diagnostics (for example, a link to a note that does not exist). |
-| **Refactor** | Plans and applies changes that span several files, such as renaming or moving a note, so that every link stays intact. |
+| Part           | Responsibility                                                                                                                                                                                                                                                                    |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Store**      | Reads and writes note files. Owns path handling and versions.                                                                                                                                                                                                                     |
+| **Watcher**    | Notices file changes made outside margin and feeds them to the index.                                                                                                                                                                                                             |
+| **Index**      | In-memory metadata for every note: title, headings, tags, outgoing links, and the reverse link graph (backlinks). For each link it records where the destination sits in the source text and which version of the note that position was read from. Resolves link text to a note. |
+| **Search**     | Fuzzy match over titles and paths for the switcher; full-text search over note bodies.                                                                                                                                                                                            |
+| **Completion** | Given a partial link, returns candidate notes and headings from the index.                                                                                                                                                                                                        |
+| **Lint**       | Given a note's text and the index, returns diagnostics (for example, a link to a note that does not exist).                                                                                                                                                                       |
+| **Refactor**   | Plans and applies changes that span several files, such as renaming or moving a note, so that every link stays intact.                                                                                                                                                            |
 
 ### Key types
 
@@ -182,12 +182,12 @@ The TypeScript code in the webview.
 
 ### Parts
 
-| Part | Responsibility |
-|---|---|
-| **Editor** | The CodeMirror 6 instance: vi mode, live-preview rendering, and the completion and lint sources that call the core. Owns the text of open notes. |
-| **Command registry** | The list of every action in the app, each with an id, a title, and a function. The keymap binds keys to command ids. |
+| Part                   | Responsibility                                                                                                                                       |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Editor**             | The CodeMirror 6 instance: vi mode, live-preview rendering, and the completion and lint sources that call the core. Owns the text of open notes.     |
+| **Command registry**   | The list of every action in the app, each with an id, a title, and a function. The keymap binds keys to command ids.                                 |
 | **Palette / switcher** | One overlay inside the main window, in the style of Obsidian and VS Code, that fuzzy-searches commands (from the registry) or notes (from the core). |
-| **Session** | The one open note, its base version, and whether it has unsaved changes. |
+| **Session**            | The one open note, its base version, and whether it has unsaved changes.                                                                             |
 
 ### Invariants
 
@@ -202,32 +202,32 @@ The only path between the frontend and the Rust side. TypeScript types are gener
 
 **Commands** (frontend calls, Rust answers):
 
-| Command | Returns | Used for |
-|---|---|---|
-| `read_note(id)` | `{ text, version }` | Opening a note |
-| `write_note(id, text, base_version)` | `version` or `Conflict` | Saving |
-| `create_note(id)`, `delete_note(id)` | result | File operations |
-| `plan_rename(from, to)` | `{ plan, summary }` | Previewing a rename or move |
-| `apply_refactor(plan)` | nothing or `Stale` | Carrying out a previewed plan |
-| `undo_refactor()` | nothing or `Stale` | Undoing the last refactor |
-| `search_notes(query, limit)` | `NoteHit[]` | Switcher |
-| `search_text(query, limit)` | `TextHit[]` | Full-text search |
-| `complete_link(query, limit)` | `LinkCandidate[]` | Link completion in the editor |
-| `backlinks(id)` | `LinkRef[]` | Backlinks view |
-| `lint(id, text)` | `Diagnostic[]` | Diagnostics for the current buffer |
-| `get_settings()`, `set_settings(patch)` | settings | Preferences |
-| `hide_window()` | nothing | Dismissing from the keyboard |
+| Command                                 | Returns                 | Used for                           |
+| --------------------------------------- | ----------------------- | ---------------------------------- |
+| `read_note(id)`                         | `{ text, version }`     | Opening a note                     |
+| `write_note(id, text, base_version)`    | `version` or `Conflict` | Saving                             |
+| `create_note(id)`, `delete_note(id)`    | result                  | File operations                    |
+| `plan_rename(from, to)`                 | `{ plan, summary }`     | Previewing a rename or move        |
+| `apply_refactor(plan)`                  | nothing or `Stale`      | Carrying out a previewed plan      |
+| `undo_refactor()`                       | nothing or `Stale`      | Undoing the last refactor          |
+| `search_notes(query, limit)`            | `NoteHit[]`             | Switcher                           |
+| `search_text(query, limit)`             | `TextHit[]`             | Full-text search                   |
+| `complete_link(query, limit)`           | `LinkCandidate[]`       | Link completion in the editor      |
+| `backlinks(id)`                         | `LinkRef[]`             | Backlinks view                     |
+| `lint(id, text)`                        | `Diagnostic[]`          | Diagnostics for the current buffer |
+| `get_settings()`, `set_settings(patch)` | settings                | Preferences                        |
+| `hide_window()`                         | nothing                 | Dismissing from the keyboard       |
 
 **Events** (Rust pushes, frontend listens):
 
-| Event | Payload | Frontend reaction |
-|---|---|---|
-| `note-changed` | `{ id, version }` | Reload the buffer if clean; mark a conflict if dirty |
-| `note-created`, `note-removed` | `{ id }` | Update any open lists; close or flag the buffer |
-| `refactored` | `{ moved, changed }` | Follow the open note to its new id; reload it if it changed |
-| `index-status` | `scanning` or `ready` | Show progress on first scan |
-| `window-shown` | nothing | Focus the editor |
-| `settings-changed` | settings | Re-apply keymap and editor options |
+| Event                          | Payload               | Frontend reaction                                           |
+| ------------------------------ | --------------------- | ----------------------------------------------------------- |
+| `note-changed`                 | `{ id, version }`     | Reload the buffer if clean; mark a conflict if dirty        |
+| `note-created`, `note-removed` | `{ id }`              | Update any open lists; close or flag the buffer             |
+| `refactored`                   | `{ moved, changed }`  | Follow the open note to its new id; reload it if it changed |
+| `index-status`                 | `scanning` or `ready` | Show progress on first scan                                 |
+| `window-shown`                 | nothing               | Focus the editor                                            |
+| `settings-changed`             | settings              | Re-apply keymap and editor options                          |
 
 ### Contract invariants
 
@@ -284,3 +284,4 @@ No vault or disk work happens on this path, which keeps summoning instant.
 - **Main window and palette.** The main window is an ordinary window. The palette is a floating fuzzy-match overlay inside it, as in Obsidian and VS Code.
 - **Index persistence.** In memory only, rebuilt on launch. No disk cache until it is unavoidable.
 - **Multiple open notes.** A single buffer for now. Splits are a likely later addition; tabs are unlikely.
+- **Frontend tooling.** Solid for the reactive overlays (palette, rename preview, conflict prompts), Vite for bundling, Bun for installs and scripts. The CodeMirror editor stays imperative and is mounted once; the UI talks to it through a small command and event API rather than mirroring its buffer into reactive state.

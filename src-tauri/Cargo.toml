@@ -1,0 +1,16 @@
+[package]
+name = "margin"
+version = "0.1.0"
+description = "A keyboard-first markdown notes app for macOS"
+edition = "2024"
+
+[lib]
+name = "margin_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+margin-vault = { path = "../crates/margin-vault" }
