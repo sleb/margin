@@ -17,3 +17,5 @@ Status: planning. Nothing is built yet.
 - **Vault core:** a UI-agnostic Rust crate for indexing, search, and linting
 
 macOS first; other platforms are possible later.
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for the component design.
