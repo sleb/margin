@@ -284,3 +284,4 @@ No vault or disk work happens on this path, which keeps summoning instant.
 - **Main window and palette.** The main window is an ordinary window. The palette is a floating fuzzy-match overlay inside it, as in Obsidian and VS Code.
 - **Index persistence.** In memory only, rebuilt on launch. No disk cache until it is unavoidable.
 - **Multiple open notes.** A single buffer for now. Splits are a likely later addition; tabs are unlikely.
+- **Frontend tooling.** Solid for the reactive overlays (palette, rename preview, conflict prompts), Vite for bundling, Bun for installs and scripts. The CodeMirror editor stays imperative and is mounted once; the UI talks to it through a small command and event API rather than mirroring its buffer into reactive state.
