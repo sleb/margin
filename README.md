@@ -2,7 +2,7 @@
 
 A keyboard-first markdown notes app for macOS that lives in the menubar.
 
-Status: early scaffolding. The app opens a blank window.
+Status: early scaffolding. The app runs as a menubar icon (no Dock icon) whose menu shows or hides a blank window, or quits.
 
 ## Goals
 
@@ -30,6 +30,7 @@ bun run tauri dev        # run the app with hot reload
 bun run tauri build      # build a release bundle
 bun run typecheck        # type-check the frontend
 cargo test --workspace   # run the Rust tests
+scripts/smoke-menubar.sh # check the release bundle runs menubar-only
 ```
 
 ## Layout
