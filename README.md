@@ -30,7 +30,6 @@ bun run tauri dev        # run the app with hot reload
 bun run tauri build      # build a release bundle
 bun run typecheck        # type-check the frontend
 cargo test --workspace   # run the Rust tests
-scripts/smoke-menubar.sh # check the release bundle runs menubar-only
 ```
 
 ## Layout

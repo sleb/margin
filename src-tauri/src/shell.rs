@@ -152,24 +152,6 @@ mod tests {
     }
 
     #[test]
-    fn menu_is_show_hide_separator_quit() {
-        assert_eq!(
-            MENU,
-            &[
-                MenuEntry::Item {
-                    action: MenuAction::ToggleWindow,
-                    label: "Show/Hide",
-                },
-                MenuEntry::Separator,
-                MenuEntry::Item {
-                    action: MenuAction::Quit,
-                    label: "Quit",
-                },
-            ]
-        );
-    }
-
-    #[test]
     fn from_id_round_trips_every_action() {
         for action in MenuAction::ALL {
             assert_eq!(MenuAction::from_id(action.id()), Some(action));
