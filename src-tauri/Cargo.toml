@@ -12,5 +12,8 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2", features = [] }
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
 margin-vault = { path = "../crates/margin-vault" }
+
+[dev-dependencies]
+tauri = { version = "2", features = ["test"] }

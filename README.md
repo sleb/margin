@@ -2,7 +2,7 @@
 
 A keyboard-first markdown notes app for macOS that lives in the menubar.
 
-Status: early scaffolding. The app opens a blank window.
+Status: early scaffolding. The app runs as a menubar icon (no Dock icon) whose menu shows or hides a blank window, or quits.
 
 ## Goals
 

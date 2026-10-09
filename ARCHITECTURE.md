@@ -1,6 +1,6 @@
 # Architecture
 
-Status: proposed. Nothing here is built yet; this is the design to build against.
+Status: proposed. Apart from the parts of the shell noted under [Built so far](#built-so-far), nothing here is built yet; this is the design to build against.
 
 ## Overview
 
@@ -175,6 +175,14 @@ The Tauri application. It makes margin a well-behaved macOS menubar app and conn
 - The shell contains no note logic. Each vault command is a thin wrapper over one core method.
 - Core calls never run on the main (UI) thread.
 - Exactly one vault is open at a time. Changing the vault setting closes the old one and opens the new one.
+
+### Built so far
+
+- margin runs with the macOS Accessory activation policy, so it has no Dock icon and is absent from Cmd-Tab.
+- The menubar icon is a template image, so macOS tints it for light and dark mode. Its menu has **Show/Hide** and **Quit**.
+- The main window is created hidden at launch. **Show/Hide** hides it if visible, otherwise shows and focuses it.
+- Closing the main window hides it instead of destroying it, so **Show/Hide** brings back the same window.
+- The menu spec and its actions live in `shell.rs`, free of Tauri types and unit tested against a fake; `tray.rs` and `window.rs` wire them to Tauri.
 
 ## Frontend
 
