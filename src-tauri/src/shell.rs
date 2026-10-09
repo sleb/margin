@@ -98,12 +98,10 @@ pub fn on_close_requested(label: &str, shell: &impl Shell) -> CloseResponse {
 
 #[cfg(test)]
 mod tests {
-    use std::cell::RefCell;
+    use std::cell::{Cell, RefCell};
     use std::collections::HashSet;
 
     use super::*;
-
-    use std::cell::Cell;
 
     /// A state-changing call made to the fake. Queries are not recorded.
     #[derive(Debug, Clone, Copy, PartialEq, Eq)]
